@@ -2,21 +2,21 @@ import { TOGGLE_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/favo
 
 const initialState = {
   favorites: [],
-  displayFavorites: false,
+  displayFavorites: true,
 };
 
-const reducer = (state = initialState, action) => {
+const favoritesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAVORITE: {
-      return { favorites: [...state.favorites, action.payload] };
+      return { ...state, favorites: [...state.favorites, action.payload] };
     }
 
     case REMOVE_FAVORITE: {
-      return { favorites: state.favorites.filter((item) => action.payload !== item.id) };
+      return { ...state, favorites: state.favorites.filter((item) => action.payload !== item.id) };
     }
 
     case TOGGLE_FAVORITES: {
-      return { ...state, displayFavorites: !displayFavorites };
+      return { ...state, displayFavorites: !state.displayFavorites };
     }
 
     default:
@@ -24,4 +24,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default favoritesReducer;

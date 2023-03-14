@@ -5,14 +5,14 @@ import { toggleFavorites, addFavorite, removeFavorite } from "../actions/favorit
 import { Link } from "react-router-dom";
 
 const FavoriteMovieList = (props) => {
-  const favorites = [];
+  const { favorites, removeFavorite } = props;
 
   console.log(props);
 
   return (
     <div className="col-xs savedContainer">
       <h5>Favorite Movies</h5>
-      {props.favorites.map((movie) => {
+      {favorites.map((movie) => {
         return (
           <div key={movie.id}>
             <Link className="btn btn-light savedButton" to={`/movies/${movie.id}`}>
